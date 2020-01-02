@@ -14,3 +14,6 @@ control.o: control.c
 
 write.o: write.c
 	$(CC) -c write.c
+
+clean:
+	rm *.o *.out control

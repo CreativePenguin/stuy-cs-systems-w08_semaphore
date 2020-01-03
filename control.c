@@ -7,10 +7,10 @@
 #define VIEW_ARG "-v"
 #define REMOVE_ARG "-r"
 #define KEY 694
-#define SEG_SIZE 100
+#define SEG_SIZE 255
 
 void create() {
-  
+
 }
 
 int main(int argc, char** argv) {
@@ -28,7 +28,8 @@ int main(int argc, char** argv) {
   if(strcmp(argv[1], VIEW_ARG) == 0) {
     printf("The story so far:\n");
     strcpy(data, "hello there\n");
-    data[strchr(data, "\n")] = 0;
+    printf("%s\n", strchr(data, "\n"));
+    //data[strchr(data, "\n")] = 0;
     printf("%s\n", data);
   }
 

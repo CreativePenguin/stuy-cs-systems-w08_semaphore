@@ -7,7 +7,8 @@
 #include <fcntl.h>
 
 #define WRITE 1
-#define SEM_KEY 25694
+#define SHM_KEY 25694
+#define SEM_KEY 63419
 #define SEG_SIZE 255
 
 union semun {
@@ -19,20 +20,22 @@ union semun {
 };
 
 int main() {
+  int shmd = shmget(SHM_KEY, 1, 0);
+  int semd = semget(SEM_KEY, 1, 0);
+  char *data = shmat(shmd, 0, 0);
+  struct sembuf sb;
+  // int fds[2];
+  // pipe(fds);
+  // char term_in[255];
+  if(semd == -1) {
+    printf("Run ./control -c first\n");
+    printf("There is no shared memory available\n");
+  }
   printf("Last addition:");
-  int shmd;
-  char *data;
-  int fds[2];
-  pipe(fds);
-  char term_in[256];
-
-  shmd = shmget(SEM_KEY, SEG_SIZE, IPC_CREAT | IPC_EXCL | 0640);
-  data = shmat(shmd, 0, 0);
-  printf("fgets failed. Rats\n");
-  fgets(data, 256, stdin);
   printf("%s\n", data);
-  term_in[strlen(term_in) - 1] = '\0';
-  write(fds[WRITE], term_in, 255);
-  printf("fds[WRITE] = %d\n", fds[WRITE]);
+  fgets(data, SEG_SIZE, stdin);
+  // term_in[strlen(term_in) - 1] = '\0';
+  // write(fds[WRITE], term_in, 255);
+  // printf("fds[WRITE] = %d\n", fds[WRITE]);
   printf("data = %s\n", data);
 }

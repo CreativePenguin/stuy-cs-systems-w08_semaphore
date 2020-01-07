@@ -22,12 +22,6 @@ union semun {
                               (Linux-specific) */
 };
 
-int shmget_error(int shmd) {
-  if(shmd == -1) {
-    printf("error %d: %s\n", errno, strerror(errno));
-  }
-}
-
 int main(int argc, char** argv) {
   int shmd;
   char *data;

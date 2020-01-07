@@ -38,6 +38,7 @@ github link:
 https://github.com/mks65/semaphone.git
 
 Example Interactions:
+``` sh
 $ ./control -c
 semaphore created
 shared memory created
@@ -71,3 +72,4 @@ in a galaxy far, far away.
 shared memory removed
 file removed
 semaphore removed
+```

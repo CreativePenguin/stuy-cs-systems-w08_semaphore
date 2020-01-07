@@ -4,10 +4,9 @@ else
 	CC = gcc
 endif
 
-# all: control.o write.o
-all: control.o
+all: control.o write.o
 	$(CC) -o control control.o
-	# $(CC) write write.o
+	$(CC) -o write write.o
 
 control.o: control.c
 	$(CC) -c control.c

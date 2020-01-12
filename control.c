@@ -17,13 +17,13 @@
 #define SEM_KEY 24601
 #define SEG_SIZE 255
 
-//union semun {
-//	int val;    /* Value for SETVAL */
-//	struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
-//	unsigned short *array;  /* Array for GETALL, SETALL */
-//	struct seminfo *__buf;	 /* Buffer for IPC_INFO
-//	                            (Linux-specific) */
-//};
+union semun {
+	int val;    /* Value for SETVAL */
+	struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
+	unsigned short *array;  /* Array for GETALL, SETALL */
+	struct seminfo *__buf;	 /* Buffer for IPC_INFO
+	                            (Linux-specific) */
+};
 
 int error_check(int val) {
   if(val < 0) printf("error %d: %s\n", errno, strerror(errno));
